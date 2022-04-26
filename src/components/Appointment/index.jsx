@@ -31,23 +31,42 @@ const CREATE = "CREATE";
 //   <Empty onClick={props.onAdd} />
 // )
 
+
+
 export default function Appointment(props) {
   const { mode, transition, back } = useVisualMode(
     props.interview ? SHOW : EMPTY
   );
-  console.log('props', props);
-  console.log('props.interviewers', props.interviewers);
+  // console.log('index.js props', props);
+  // console.log('props.interviewers', props.interviewers);
+
+  function save(name, interviewer) {
+    const interview = {
+      student: name,
+      interviewer
+    };
+    props.bookInterview(props.id, interview);
+    transition(SHOW);
+
+  }
   return (
     <article className="appointment">
       <Header time={props.time} />
       {mode === EMPTY && <Empty onAdd={() => transition(CREATE)} />}
+      {console.log('props from index', props)}
       {mode === SHOW && (
         <Show
           student={props.interview.student}
-          interviewer={props.interview.interviewer}
+          interviewer={props.interview.interviewer.name}
         />
       )}
-      {mode === CREATE && <Form interviewers={props.interviewers} onCancel={() => back()} />}
+      {mode === CREATE &&
+        <Form
+          interviewers={props.interviewers}
+          onCancel={() => back()}
+
+          onSave={save} />
+      }
       {mode === CONFIRM && <Confirm />}
       {mode === STATUS && <Status />}
       {mode === ERROR && <Error />}
