@@ -48,7 +48,12 @@ export default function Appointment(props) {
     transition(STATUS);
     props.bookInterview(props.id, interview);
     transition(SHOW);
-
+  }
+  function deleet(id) {
+    // const interview = null;
+    transition(STATUS);
+    props.deleteInterview(props.id);
+    transition(EMPTY);
   }
   return (
     <article className="appointment">
@@ -59,6 +64,7 @@ export default function Appointment(props) {
         <Show
           student={props.interview.student}
           interviewer={props.interview.interviewer.name}
+          onDelete={deleet}
         />
       )}
       {mode === CREATE &&
