@@ -32,34 +32,3 @@ export function getInterview(state, interview) {
   const newObj = { ...interview, interviewer };
   return newObj;
 };
-
-// {
-//   "id":1,
-//   "time":"12pm",
-//   "interview": {
-//     "student": "Lydia Miller-Jones",
-//     "interviewer": {
-//       "id": 1,
-//       "name": "Sylvia Palmer",
-//       "avatar": "https://i.imgur.com/LpaY82x.png"
-//     }
-//   }
-// }
-
-// {
-//   "student": "Lydia Miller-Jones",
-//     "interviewer": {
-//     "id": 1,
-//       "name": "Sylvia Palmer",
-//         "avatar": "https://i.imgur.com/LpaY82x.png";
-//   }
-// }
-
-//incomming 
-// {
-//   1: {
-//     id: 1,
-//       name: "Sylvia Palmer",
-//         avatar: "https://i.imgur.com/LpaY82x.png";
-//   },
-// }

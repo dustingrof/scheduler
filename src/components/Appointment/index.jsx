@@ -53,11 +53,11 @@ export default function Appointment(props) {
     <article className="appointment">
       <Header time={props.time} />
       {mode === EMPTY && <Empty onAdd={() => transition(CREATE)} />}
-      {console.log('props from index', props)}
+      {/* {console.log('props from index', props)} */}
       {mode === SHOW && (
         <Show
           student={props.interview.student}
-          interviewer={props.interview.interviewer.name}
+          interviewer={props.interview.interviewer && props.interview.interviewer.name}
           onDelete={() => transition(CONFIRM)}
           onEdit={() => transition(EDIT)}
         />
@@ -77,7 +77,7 @@ export default function Appointment(props) {
         <Form
           interviewers={props.interviewers}
           student={props.interview.student}
-          interviewer={props.interview.interviewer.id}
+          interviewer={props.interview.interviewer && props.interview.interviewer.id}
           onCancel={() => back()}
           onSave={save}
         />
