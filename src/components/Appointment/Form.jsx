@@ -28,13 +28,12 @@ export default function Form(props) {
     setError("");
     props.onSave(student, interviewer);
   }
-
+  console.log('props from form', props);
   return (
     <main className="appointment__card appointment__card--create">
       <form autoComplete="off" onSubmit={(event) => {
         validate(event);
         event.preventDefault();
-        // props.onSave(student, interviewer);
       }} >
         <section className="appointment__card-left">
           <input
@@ -59,7 +58,7 @@ export default function Form(props) {
             <Button danger onClick={cancel}>
               Cancel
             </Button>
-            <Button confirm type={"submit"}>
+            <Button confirm type={"submit"} >
               Save
             </Button>
           </section>

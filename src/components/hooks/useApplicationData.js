@@ -34,7 +34,6 @@ export default function useApplicationData(initial) {
     });
   }, []);
 
-
   const remainingSpots = (appointmentId, booked) => {
     for (const day of state.days) {
       if (day.appointments.includes(appointmentId)) {
@@ -61,11 +60,6 @@ export default function useApplicationData(initial) {
       [id]: appointment,
     };
 
-    // setState({
-    //   ...state,
-    //   appointments,
-    // });
-
     return axios
       .put(`/api/appointments/${id}`, {
         interview: appointment.interview,
@@ -75,6 +69,29 @@ export default function useApplicationData(initial) {
           return { ...prev, appointments };
         });
         remainingSpots(id, true);
+      });
+  }
+
+  function editInterview(id, interview) {
+    const appointment = {
+      ...state.appointments[id],
+      interview: { ...interview },
+    };
+
+    const appointments = {
+      ...state.appointments,
+      [id]: appointment,
+    };
+
+    return axios
+      .put(`/api/appointments/${id}`, {
+        interview: appointment.interview,
+      })
+      .then(response => {
+        setState(prev => {
+          return { ...prev, appointments };
+        });
+        // remainingSpots(id, true);
       });
   }
 
@@ -97,5 +114,5 @@ export default function useApplicationData(initial) {
     });
   }
 
-  return { state, setDay, bookInterview, deleteInterview };
+  return { state, setDay, bookInterview, deleteInterview, editInterview };
 }

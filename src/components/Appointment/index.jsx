@@ -27,12 +27,27 @@ export default function Appointment(props) {
   );
 
   function save(name, interviewer) {
+    // console.log('props', props);
     const interview = {
       student: name,
       interviewer
     };
     transition(SAVING);
     props.bookInterview(props.id, interview)
+      .then(() => {
+        transition(SHOW);
+      })
+      .catch(error => transition(ERROR_SAVE, true));
+
+  }
+  function edit(name, interviewer) {
+    // console.log('props', props);
+    const interview = {
+      student: name,
+      interviewer
+    };
+    transition(SAVING);
+    props.editInterview(props.id, interview)
       .then(() => {
         transition(SHOW);
       })
@@ -79,7 +94,8 @@ export default function Appointment(props) {
           student={props.interview.student}
           interviewer={props.interview.interviewer && props.interview.interviewer.id}
           onCancel={() => back()}
-          onSave={save}
+          onSave={edit}
+          edit={"True"}
         />
       )}
     </article>
