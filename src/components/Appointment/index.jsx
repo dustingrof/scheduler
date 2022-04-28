@@ -27,7 +27,6 @@ export default function Appointment(props) {
   );
 
   function save(name, interviewer) {
-    // console.log('props', props);
     const interview = {
       student: name,
       interviewer
@@ -44,7 +43,6 @@ export default function Appointment(props) {
   /** TO DO: figure out another way to exclude the updateCount function from edit mode */
   //created to fix bug when editing would update the count of spots remaining
   function edit(name, interviewer) {
-    // console.log('props', props);
     const interview = {
       student: name,
       interviewer

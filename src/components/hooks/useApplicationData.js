@@ -10,7 +10,6 @@ export default function useApplicationData(initial) {
   });
 
   const setDay = day => {
-    // console.log('day=', day);
     setState(prev => ({ ...prev, day }));
   };
 
@@ -24,7 +23,6 @@ export default function useApplicationData(initial) {
       axios.get(secondURL),
       axios.get(thirdURL),
     ]).then(all => {
-      // console.log("all", all);
       const days = all[0].data;
       const appointments = all[1].data;
       const interviewers = all[2].data;
