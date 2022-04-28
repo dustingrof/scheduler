@@ -4,7 +4,6 @@ export default function Show(props) {
   return (
     <main className="appointment__card appointment__card--show">
       <section className="appointment__card-left">
-        {/* {console.log("show.jsx props ", props)} */}
         <h2 className="text--regular">{props.student}</h2>
         <section className="interviewer">
           <h4 className="text--light">Interviewer</h4>

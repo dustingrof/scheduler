@@ -40,6 +40,9 @@ export default function Appointment(props) {
       .catch(error => transition(ERROR_SAVE, true));
 
   }
+
+  /** TO DO: figure out another way to exclude the updateCount function from edit mode */
+  //created to fix bug when editing would update the count of spots remaining
   function edit(name, interviewer) {
     // console.log('props', props);
     const interview = {
@@ -54,6 +57,8 @@ export default function Appointment(props) {
       .catch(error => transition(ERROR_SAVE, true));
 
   }
+
+  //intentionally spelled wrong to avoid using a reserved word...
   function deleet(id) {
     // const interview = null;
     transition(DELETING, true);
@@ -67,8 +72,9 @@ export default function Appointment(props) {
   return (
     <article className="appointment">
       <Header time={props.time} />
+
       {mode === EMPTY && <Empty onAdd={() => transition(CREATE)} />}
-      {/* {console.log('props from index', props)} */}
+
       {mode === SHOW && (
         <Show
           student={props.interview.student}
@@ -77,17 +83,24 @@ export default function Appointment(props) {
           onEdit={() => transition(EDIT)}
         />
       )}
+
       {mode === CREATE &&
         <Form
           interviewers={props.interviewers}
           onCancel={() => back()}
           onSave={save} />
       }
+
       {mode === CONFIRM && <Confirm onConfirm={deleet} onCancel={() => transition(SHOW)} />}
+
       {mode === SAVING && <Status message={"Saving.."} />}
+
       {mode === ERROR_SAVE && <Error message={"Could not save appointment"} onClose={() => back()} />}
+
       {mode === DELETING && <Status message={"Deleting..."} />}
+
       {mode === ERROR_DELETE && <Error message={"Could not cancel appointment"} onClose={() => back()} />}
+
       {mode === EDIT && (
         <Form
           interviewers={props.interviewers}
@@ -95,7 +108,6 @@ export default function Appointment(props) {
           interviewer={props.interview.interviewer && props.interview.interviewer.id}
           onCancel={() => back()}
           onSave={edit}
-          edit={"True"}
         />
       )}
     </article>

@@ -54,7 +54,6 @@ export default function useApplicationData(initial) {
       ...state.appointments[id],
       interview: { ...interview },
     };
-
     const appointments = {
       ...state.appointments,
       [id]: appointment,
@@ -71,13 +70,14 @@ export default function useApplicationData(initial) {
         remainingSpots(id, true);
       });
   }
-
+  /** TO DO: figure out a way to fix the spots count without duplicating this code */
+  // created to fix bug that caused spots remaining to update on edit. 
+  // excluded the function from this bit
   function editInterview(id, interview) {
     const appointment = {
       ...state.appointments[id],
       interview: { ...interview },
     };
-
     const appointments = {
       ...state.appointments,
       [id]: appointment,
@@ -100,7 +100,6 @@ export default function useApplicationData(initial) {
       ...state.appointments[id],
       interview: null,
     };
-
     const appointments = {
       ...state.appointments,
       [id]: appointment,
