@@ -1,5 +1,4 @@
 import React from "react";
-// import DayListItem from "components/DayListItem";
 import ReactDOM from "react-dom";
 
 import "index.scss";

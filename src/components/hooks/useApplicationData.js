@@ -89,7 +89,6 @@ export default function useApplicationData(initial) {
         setState(prev => {
           return { ...prev, appointments };
         });
-        // remainingSpots(id, true);
       });
   }
 
